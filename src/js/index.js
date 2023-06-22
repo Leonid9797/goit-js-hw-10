@@ -8,13 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
   breedSelect.addEventListener('change', event => {
     const breedId = event.target.value;
 
+    breedSelect.style.display = 'none';
     loader.style.display = 'block';
 
     fetchCatByBreed(breedId)
       .then(cats => {
         catInfo.innerHTML = '';
 
-        //зображення
         cats.forEach(cat => {
           const catContainer = document.createElement('div');
           catContainer.className = 'cat-container';
@@ -44,9 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
         Notiflix.Notify.Failure('Error fetching cat by breed');
       })
       .finally(() => {
+        breedSelect.style.display = 'block';
         loader.style.display = 'none';
       });
   });
+
+  breedSelect.style.display = 'none';
+  loader.style.display = 'block';
 
   fetchBreeds()
     .then(breeds => {
@@ -56,6 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
         option.textContent = breed.name;
         breedSelect.appendChild(option);
       });
+
+      breedSelect.style.display = 'block';
+      loader.style.display = 'none';
     })
     .catch(error => {
       console.error('Error fetching breeds:', error);
