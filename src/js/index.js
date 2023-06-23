@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   breedSelect.addEventListener('change', event => {
     const breedId = event.target.value;
 
-    breedSelect.style.display = 'none';
+    catInfo.style.display = 'none';
     loader.style.display = 'block';
 
     fetchCatByBreed(breedId)
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         Notiflix.Notify.Failure('Error fetching cat by breed');
       })
       .finally(() => {
-        breedSelect.style.display = 'block';
+        catInfo.style.display = 'block';
         loader.style.display = 'none';
       });
   });
